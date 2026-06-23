@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DecodeLabs AI Project 1</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.header{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.header h1{
+    font-size:28px;
+}
+
+.header p{
+    margin-top:5px;
+}
+
+.container{
+    display:flex;
+    height:calc(100vh - 120px);
+}
+
+.sidebar{
+    width:280px;
+    background:white;
+    padding:20px;
+    border-right:1px solid #ddd;
+}
+
+.sidebar h3{
+    margin-bottom:15px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    background:#eef3ff;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:8px;
+}
+
+.chat-section{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.chat-box{
+    flex:1;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.bot{
+    background:#e9ecef;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:10px;
+    max-width:70%;
+}
+
+.user{
+    background:#0d6efd;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:10px;
+    margin-left:auto;
+    max-width:70%;
+}
+
+.input-area{
+    display:flex;
+    padding:15px;
+    background:white;
+    border-top:1px solid #ddd;
+}
+
+.input-area input{
+    flex:1;
+    padding:12px;
+    font-size:16px;
+}
+
+.input-area button{
+    padding:12px 20px;
+    margin-left:10px;
+    cursor:pointer;
+}
+
+.footer{
+    text-align:center;
+    background:white;
+    padding:10px;
+    border-top:1px solid #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🤖 DecodeLabs Industrial Training Kit</h1>
+    <p>AI Project 1 - Rule-Based AI Chatbot</p>
+    <p><strong>Built by Abdul Aakhir Saifullah</strong></p>
+</div>
+
+<div class="container">
+
+    <div class="sidebar">
+
+        <h3>💡 Try These Commands</h3>
+
+        <ul>
+            <li>hello</li>
+            <li>hi</li>
+            <li>hey</li>
+            <li>how are you</li>
+            <li>what is your name</li>
+            <li>who made you</li>
+            <li>what is ai</li>
+            <li>help</li>
+            <li>bye</li>
+            <li>exit</li>
+        </ul>
+
+        <h3>📌 Features</h3>
+
+        <ul>
+            <li>Rule-Based AI</li>
+            <li>If-Else Logic</li>
+            <li>Continuous Chat</li>
+            <li>Interactive UI</li>
+        </ul>
+
+    </div>
+
+    <div class="chat-section">
+
+        <div id="chatBox" class="chat-box">
+
+            <div class="bot">
+                Welcome to DecodeLabs AI Project 1.<br><br>
+                I am a Rule-Based AI Chatbot.<br>
+                Type a command from the left panel.
+            </div>
+
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="userInput"
+            placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    DecodeLabs Industrial Training Kit — AI Project 1
+</div>
+
+<script>
+
+function sendMessage(){
+
+    let input = document.getElementById("userInput");
+    let text = input.value.trim();
+
+    if(text==="") return;
+
+    let chatBox = document.getElementById("chatBox");
+
+    chatBox.innerHTML +=
+    `<div class="user">${text}</div>`;
+
+    let msg = text.toLowerCase();
+    let reply="";
+
+    if(msg==="hello" || msg==="hi" || msg==="hey"){
+        reply="Hello! Nice to meet you.";
+    }
+
+    else if(msg==="how are you"){
+        reply="I am fine. Thank you!";
+    }
+
+    else if(msg==="what is your name"){
+        reply="I am a Rule-Based AI Chatbot.";
+    }
+
+    else if(msg==="who made you"){
+        reply="I was created by Abdul Aakhir Saifullah.";
+    }
+
+    else if(msg==="what is ai"){
+        reply="AI stands for Artificial Intelligence.";
+    }
+
+    else if(msg==="help"){
+        reply="Try: hello, hi, hey, how are you, what is your name, who made you, what is ai, bye, exit";
+    }
+
+    else if(msg==="bye" || msg==="exit"){
+        reply="Goodbye! Have a great day.";
+    }
+
+    else{
+        reply="Sorry, I don't understand that command.";
+    }
+
+    chatBox.innerHTML +=
+    `<div class="bot">${reply}</div>`;
+
+    input.value="";
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+document.getElementById("userInput")
+.addEventListener("keypress",function(e){
+    if(e.key==="Enter"){
+        sendMessage();
+    }
+});
+
+</script>
+
+</body>
+</html>
